@@ -1,0 +1,65 @@
+{
+    "APP_NAME": "CDSS – Smart Credit Decision Support System",
+    "NAV": {
+        "DASHBOARD": "Dashboard",
+        "CUSTOMERS": "Customers",
+        "LOANS": "Loan Applications",
+        "AI_SCORING": "AI Scoring",
+        "AUTOML": "AutoML",
+        "MODEL_REGISTRY": "Model Governance",
+        "FAIRNESS": "AI Fairness",
+        "EXPLAINABILITY": "Explainability (XAI)",
+        "ADVERSARIAL": "Adversarial Defense",
+        "COMPLIANCE": "Compliance & Reports",
+        "PORTFOLIO": "Credit Portfolio",
+        "MONITORING": "System Monitoring",
+        "WORKFLOW": "Approval Workflow",
+        "NOTIFICATIONS": "Notifications",
+        "ADMIN": "Administration"
+    },
+    "COMMON": {
+        "SAVE": "Save",
+        "CANCEL": "Cancel",
+        "DELETE": "Delete",
+        "EDIT": "Edit",
+        "CREATE": "Create New",
+        "SEARCH": "Search",
+        "FILTER": "Filter",
+        "EXPORT": "Export Report",
+        "APPROVE": "Approve",
+        "REJECT": "Reject",
+        "SUBMIT": "Submit",
+        "BACK": "Back",
+        "LOADING": "Loading...",
+        "NO_DATA": "No data available",
+        "CONFIRM": "Confirm",
+        "STATUS": "Status",
+        "ACTIONS": "Actions"
+    },
+    "DASHBOARD": {
+        "TOTAL_OUTSTANDING": "Total Outstanding (billion VND)",
+        "NPL_RATIO": "NPL Ratio",
+        "APPROVAL_RATE": "Approval Rate",
+        "OVERRIDE_RATE": "Override Rate",
+        "VOLUME_CHART": "Application Volume",
+        "RISK_DIST": "Risk Distribution"
+    },
+    "LOAN": {
+        "STATUS_DRAFT": "Draft",
+        "STATUS_SUBMITTED": "Submitted",
+        "STATUS_AI_SCORING": "AI Scoring",
+        "STATUS_REVIEWING": "Under Review",
+        "STATUS_APPROVED": "Approved",
+        "STATUS_REJECTED": "Rejected",
+        "STATUS_DISBURSED": "Disbursed",
+        "PRODUCT_CONSUMER": "Consumer Loan",
+        "PRODUCT_MORTGAGE": "Mortgage",
+        "PRODUCT_BUSINESS": "Business Loan",
+        "PRODUCT_CREDIT_CARD": "Credit Card"
+    },
+    "SCORING": {
+        "AI_SCORE": "AI Score",
+        "OVERRIDE": "Override AI Decision",
+        "CHAMPION_CHALLENGER": "Champion-Challenger Comparison"
+    }
+}

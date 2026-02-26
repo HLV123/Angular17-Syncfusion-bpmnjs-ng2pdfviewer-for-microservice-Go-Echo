@@ -1,0 +1,65 @@
+{
+    "APP_NAME": "CDSS – Hệ thống Hỗ trợ Quyết định Tín dụng",
+    "NAV": {
+        "DASHBOARD": "Tổng quan",
+        "CUSTOMERS": "Khách hàng",
+        "LOANS": "Hồ sơ vay",
+        "AI_SCORING": "AI Scoring",
+        "AUTOML": "AutoML",
+        "MODEL_REGISTRY": "Model Governance",
+        "FAIRNESS": "Công bằng AI",
+        "EXPLAINABILITY": "Giải thích AI (XAI)",
+        "ADVERSARIAL": "Adversarial Defense",
+        "COMPLIANCE": "Tuân thủ & Báo cáo",
+        "PORTFOLIO": "Danh mục tín dụng",
+        "MONITORING": "Giám sát hệ thống",
+        "WORKFLOW": "Quy trình phê duyệt",
+        "NOTIFICATIONS": "Thông báo",
+        "ADMIN": "Quản trị hệ thống"
+    },
+    "COMMON": {
+        "SAVE": "Lưu",
+        "CANCEL": "Hủy",
+        "DELETE": "Xóa",
+        "EDIT": "Sửa",
+        "CREATE": "Tạo mới",
+        "SEARCH": "Tìm kiếm",
+        "FILTER": "Lọc",
+        "EXPORT": "Xuất báo cáo",
+        "APPROVE": "Phê duyệt",
+        "REJECT": "Từ chối",
+        "SUBMIT": "Gửi",
+        "BACK": "Quay lại",
+        "LOADING": "Đang tải...",
+        "NO_DATA": "Không có dữ liệu",
+        "CONFIRM": "Xác nhận",
+        "STATUS": "Trạng thái",
+        "ACTIONS": "Hành động"
+    },
+    "DASHBOARD": {
+        "TOTAL_OUTSTANDING": "Tổng dư nợ (tỷ VND)",
+        "NPL_RATIO": "Tỷ lệ nợ xấu (NPL)",
+        "APPROVAL_RATE": "Tỷ lệ duyệt vay",
+        "OVERRIDE_RATE": "Override rate",
+        "VOLUME_CHART": "Volume hồ sơ xử lý",
+        "RISK_DIST": "Phân bổ rủi ro"
+    },
+    "LOAN": {
+        "STATUS_DRAFT": "Bản nháp",
+        "STATUS_SUBMITTED": "Tiếp nhận",
+        "STATUS_AI_SCORING": "AI Scoring",
+        "STATUS_REVIEWING": "Thẩm định",
+        "STATUS_APPROVED": "Đã duyệt",
+        "STATUS_REJECTED": "Từ chối",
+        "STATUS_DISBURSED": "Giải ngân",
+        "PRODUCT_CONSUMER": "Tiêu dùng",
+        "PRODUCT_MORTGAGE": "Nhà ở",
+        "PRODUCT_BUSINESS": "Kinh doanh",
+        "PRODUCT_CREDIT_CARD": "Thẻ tín dụng"
+    },
+    "SCORING": {
+        "AI_SCORE": "Điểm AI",
+        "OVERRIDE": "Ghi đè quyết định AI",
+        "CHAMPION_CHALLENGER": "So sánh Champion-Challenger"
+    }
+}

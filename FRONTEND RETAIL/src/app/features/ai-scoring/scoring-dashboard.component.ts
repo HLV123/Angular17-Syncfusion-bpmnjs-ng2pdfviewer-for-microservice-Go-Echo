@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';import { CommonModule } from '@angular/common';import { RouterModule } from '@angular/router';import { MockDataService } from '../../core/services/mock-data.service';
+@Component({selector:'app-scoring-dashboard',standalone:true,imports:[CommonModule,RouterModule],
+  template:`<div class="page-container"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px"><div><h1 class="page-title">AI Scoring & Chấm điểm Tín dụng</h1><p class="page-subtitle">Module AI001-AI004 · gRPC (Seldon/Kubeflow) + REST (SageMaker/PredictionIO)</p></div><button class="btn btn-primary btn-sm"><i class="fas fa-cog"></i> Cấu hình Ensemble</button></div>
+    <div class="kpi-grid"><div class="kpi-card kpi-blue"><div class="kpi-icon"><i class="fas fa-calculator"></i></div><div class="kpi-label">Scoring hôm nay</div><div class="kpi-value">47</div><div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +12% so hôm qua</div></div>
+      <div class="kpi-card kpi-green"><div class="kpi-icon"><i class="fas fa-tachometer-alt"></i></div><div class="kpi-label">Avg Latency</div><div class="kpi-value">1.8s</div><div class="kpi-trend trend-up"><i class="fas fa-check-circle"></i> Target &lt;3 phút</div></div>
+      <div class="kpi-card kpi-orange"><div class="kpi-icon"><i class="fas fa-bullseye"></i></div><div class="kpi-label">Success Rate</div><div class="kpi-value">99.2%</div><div class="kpi-trend trend-up"><i class="fas fa-check"></i> 1 timeout hôm nay</div></div>
+      <div class="kpi-card kpi-red"><div class="kpi-icon"><i class="fas fa-user-edit"></i></div><div class="kpi-label">Override Rate</div><div class="kpi-value">7.2%</div><div class="kpi-trend"><i class="fas fa-info-circle"></i> human-in-the-loop</div></div></div>
+    <div class="row-flex">
+      <div class="card col-6"><div class="card-header"><h3><i class="fas fa-list"></i> Hồ sơ cần/đang scoring</h3><span class="badge badge-warning">{{pendingLoans.length}} hồ sơ</span></div>
+        @for(l of pendingLoans;track l.id){<div style="display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid var(--border-light)"><div><strong style="color:var(--brand-accent)">{{l.id}}</strong> – {{l.customerName}}<br><small style="color:var(--text-tertiary)">{{(l.amount/1e6).toFixed(0)}}M · {{l.productType}} · DTI {{l.dti}}%</small></div><div style="display:flex;align-items:center;gap:8px"><span class="status-badge" [class]="'status-'+l.status.toLowerCase()" style="font-size:.75rem">{{l.status}}</span><a [routerLink]="'/ai-scoring/'+l.id" class="btn btn-sm btn-primary"><i class="fas fa-play"></i> Score</a></div></div>}
+        @if(pendingLoans.length===0){<p style="text-align:center;padding:30px;color:var(--text-tertiary)">Không có hồ sơ cần scoring</p>}
+      </div>
+      <div class="card col-6"><div class="card-header"><h3><i class="fas fa-network-wired"></i> Model Endpoints</h3><span class="badge badge-tech">Health Check</span></div>
+        @for(e of endpoints;track e.name){<div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg-tertiary);border-radius:10px;margin-bottom:8px"><div><strong>{{e.name}}</strong><br><small style="color:var(--text-tertiary)">{{e.protocol}} · {{e.url}}</small></div><div style="display:flex;align-items:center;gap:10px"><div style="text-align:right"><span style="font-family:var(--font-mono);font-size:.85rem">{{e.latency}}ms</span><br><small style="color:var(--text-tertiary)">p99</small></div><span class="badge" [class]="e.status==='UP'?'badge-success':'badge-danger'">{{e.status}}</span></div></div>}
+        <div style="margin-top:16px"><h4 style="margin-bottom:10px">Scoring Distribution hôm nay</h4>
+          <div style="display:flex;gap:4px;align-items:flex-end;height:80px;padding:4px">@for(b of scoreDist;track b.range){<div style="flex:1;text-align:center"><div [style.height.px]="b.count*4" [style.background]="b.color" style="border-radius:3px 3px 0 0;min-height:4px;opacity:.8"></div><small style="font-size:.6rem;color:var(--text-tertiary)">{{b.range}}</small></div>}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card"><div class="card-header"><h3><i class="fas fa-history"></i> Scoring gần đây</h3></div>
+      <table class="data-table"><thead><tr><th>Thời gian</th><th>Hồ sơ</th><th>Khách hàng</th><th>Score</th><th>Rating</th><th>Khuyến nghị</th><th>Latency</th></tr></thead><tbody>
+        @for(r of recentScores;track r.id){<tr><td style="font-size:.82rem">{{r.time}}</td><td><strong>{{r.id}}</strong></td><td>{{r.customer}}</td><td style="font-weight:800;font-size:1.05rem" [style.color]="r.score>=700?'var(--brand-success)':r.score>=500?'var(--brand-warning)':'var(--brand-danger)'">{{r.score}}</td><td><span class="badge" [class]="r.score>=700?'badge-success':r.score>=500?'badge-warning':'badge-danger'">{{r.rating}}</span></td><td><span class="badge" [class]="r.rec==='APPROVE'?'badge-success':r.rec==='CONDITIONAL'?'badge-warning':'badge-danger'">{{r.rec}}</span></td><td style="font-family:var(--font-mono);font-size:.82rem">{{r.latency}}s</td></tr>}
+      </tbody></table>
+    </div>
+  </div>`,styles:['.status-submitted{background:#E0E7FF;color:#3730A3}.status-ai_scoring{background:#FEF3C7;color:#92400E}.status-reviewing{background:#EFF6FF;color:#1E40AF}']
+})
+export class ScoringDashboardComponent implements OnInit {
+  pendingLoans:any[]=[];
+  endpoints=[{name:'Seldon Core – Behavioral',protocol:'gRPC',url:'seldon.cluster:9000',latency:85,status:'UP'},{name:'Kubeflow – Credit Risk',protocol:'gRPC',url:'kubeflow.cluster:9001',latency:120,status:'UP'},{name:'SageMaker – Fraud',protocol:'REST',url:'sagemaker.aws/predict',latency:350,status:'UP'},{name:'PredictionIO – Segment',protocol:'REST',url:'predictionio:8000',latency:200,status:'UP'}];
+  scoreDist=[{range:'0-300',count:2,color:'#DC2626'},{range:'301-500',count:5,color:'#F59E0B'},{range:'501-600',count:8,color:'#D97706'},{range:'601-700',count:12,color:'#2563EB'},{range:'701-800',count:14,color:'#059669'},{range:'801-1000',count:6,color:'#047857'}];
+  recentScores=[{id:'LV-2435',customer:'Nguyễn Thị Hồng',score:731,rating:'GOOD',rec:'APPROVE',latency:1.8,time:'09:41'},{id:'LV-2436',customer:'Phạm Minh Châu',score:810,rating:'EXCELLENT',rec:'APPROVE',latency:1.5,time:'09:05'},{id:'LV-2437',customer:'Lê Đức Dũng',score:480,rating:'POOR',rec:'REJECT',latency:2.1,time:'11:00'},{id:'LV-2439',customer:'Bùi Thanh Hải',score:780,rating:'GOOD',rec:'CONDITIONAL',latency:1.9,time:'10:15'},{id:'LV-2442',customer:'Hoàng Văn Phú',score:650,rating:'AVERAGE',rec:'CONDITIONAL',latency:2.3,time:'10:00'}];
+  constructor(private m:MockDataService){}
+  ngOnInit(){this.pendingLoans=this.m.getLoans().filter(l=>['SUBMITTED','AI_SCORING','REVIEWING'].includes(l.status));}
+}
